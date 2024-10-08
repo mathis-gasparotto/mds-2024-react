@@ -1,31 +1,29 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Home from "./components/Home/Home";
-// import { Title, Paragraph } from "./components/atoms/Text";
-import { Text, Button, Container } from "./components/atoms";
 import { Menu } from "./components/molecules";
+import Profil from "./pages/Profil";
+import HomePage from "./pages/HomePage";
+import Contact from "./pages/Contact";
 function App() {
-  const [toto, setToto] = useState("toto");
+  const [currentRoute, setCurrentRoute] = useState("profil");
+  const routes = {
+    profil: <Profil />,
+    home: <HomePage />,
+    contact: <Contact />,
+  };
   return (
     <div className="App">
       <Menu
         onMenuChange={(arg) => {
-          setToto(arg);
+          setCurrentRoute(arg);
         }}
         configs={[
-          { displayName: "Profile" },
-          { displayName: "Home" },
-          { displayName: "Contact" },
+          { displayName: "Profile", pageName: "profil" },
+          { displayName: "Home", pageName: "home" },
+          { displayName: "Contact", pageName: "contact" },
         ]}
       ></Menu>
-      <Home message="Hello World"></Home>
-      <Text.Title title="Mon super Titre"></Text.Title>
-      <Text.Paragraph text="Bonjour a tous, regardez ce super texte"></Text.Paragraph>
-      <Text.SubTitle>
-        <Text.Paragraph text="Mon super deuxieme Titre"></Text.Paragraph>
-      </Text.SubTitle>
-      <Text.Paragraph>{toto}</Text.Paragraph>
+      {routes[currentRoute]}
     </div>
   );
 }

@@ -1,12 +1,13 @@
 import React from "react";
-import { Button } from "..";
 
 const Menu = ({ children }) => {
   return (
     <div
       style={{
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-evenly",
+        padding: 15,
+        backgroundColor: "lightgray",
       }}
     >
       {children}
